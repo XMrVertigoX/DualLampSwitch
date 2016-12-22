@@ -20,15 +20,15 @@ void BlinkTask::setup() {
     CMU_ClockEnable(cmuClock_HFLE, true);
     CMU_ClockEnable(cmuClock_GPIO, true);
 
-    GPIO_PinModeSet(gpioPortF, 2, gpioModePushPullDrive, 0);
-    GPIO_PinModeSet(gpioPortF, 3, gpioModePushPullDrive, 0);
+    GPIO_PinModeSet(gpioPortA, 0, gpioModePushPullDrive, 0);
+    GPIO_PinModeSet(gpioPortA, 1, gpioModePushPullDrive, 0);
 
-    GPIO_PinOutSet(gpioPortF, 2);
+    GPIO_PinOutSet(gpioPortA, 0);
 }
 
 void BlinkTask::loop() {
     vTaskDelayUntil(&_LastWakeTime, 1000 / portTICK_PERIOD_MS);
 
-    GPIO_PinOutToggle(gpioPortF, 2);
-    GPIO_PinOutToggle(gpioPortF, 3);
+    GPIO_PinOutToggle(gpioPortA, 0);
+    GPIO_PinOutToggle(gpioPortA, 1);
 }
